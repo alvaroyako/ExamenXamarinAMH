@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExamenXamarinAMH.Views.ModificarPersonajeView"
+             xmlns:local="clr-namespace:ExamenXamarinAMH">
+    <ContentPage.Content>
+        <StackLayout BindingContext="{Binding Source={x:Static local:App.ServiceLocator}
+            , Path=ModificarPersonajeViewModel}">
+            <Label Text="Modificar Personaje"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Picker x:Name="pickerSeries" Title="Series" ItemsSource="{Binding Series}"
+                    ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding SelectedSerie}" />
+            <Picker x:Name="pickerPersonajes" Title="Personajes" ItemsSource="{Binding Personajes}"
+                    ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding SelectedPersonaje}" />
+            <Button Text="Modificar Personaje" Command="{Binding ModificarPersonaje}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

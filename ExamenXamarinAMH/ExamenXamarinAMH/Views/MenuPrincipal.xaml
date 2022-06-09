@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExamenXamarinAMH.Views.MenuPrincipal"
+              xmlns:local="clr-namespace:ExamenXamarinAMH">
+    <ContentPage.Content>
+        <StackLayout x:Name="stackSeries" BindingContext="{Binding Source={x:Static local:App.ServiceLocator}
+            , Path=MenuViewModel}" Orientation="Vertical">
+            <StackLayout>
+                <Label Text="Series"
+                VerticalOptions="Start"
+                FontSize="25"
+                HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <CarouselView ItemsSource="{Binding Series}">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="{Binding Nombre}" FontSize="15" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Puntuacion}"  FontSize="15" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Anyo}"  FontSize="15" HorizontalOptions="CenterAndExpand"/>
+                                <Button Text="Personajes" Command="{Binding BindingContext.VerPersonajes, Source={x:Reference stackSeries}}" 
+                            CommandParameter="{Binding .}"/>
+                                <Image Source="{Binding Imagen}"/>
+                               
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </StackLayout>
+            
+            <StackLayout>
+                <ListView ItemsSource="{Binding Personajes}"
+                      RowHeight="80">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Imagen}"/>
+                                    <Label Text="{Binding Nombre}" TextColor="Red"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
